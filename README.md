@@ -62,7 +62,7 @@ Since my model's hidden states and gradients look good, it seems like
 there might be an issue with the training code in
 [train.py](train.py), which I started with
 [the official PyTorch MNIST example](https://github.com/pytorch/examples/blob/master/mnist/main.py).
-My training code here will successfully train a resnet model
+My training code here will successfully train a VGG model
 on CIFAR-10 (not included in this repo)
 that gets around 10% test error.
 I was also expecting something to go wrong here to help me
