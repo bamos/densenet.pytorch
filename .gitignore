@@ -1,0 +1,5 @@
+cifar
+*.pth
+__pycache__
+*.t7
+work
