@@ -15,7 +15,7 @@ repo on GitHub.
 
 This repo is not complete and I'll fill in more details
 here soon. We just overcame a PyTorch bug that you
-can learn more about [here](attic/debug-log.md).
+can learn more about [here](attic/debug-discussion.md).
 PyTorch master will soon contain a cudnn patch making the
 code in this repo work.
 
