@@ -24,6 +24,7 @@ import shutil
 import setproctitle
 
 import densenet
+import make_graph
 
 def main():
     parser = argparse.ArgumentParser()
@@ -109,6 +110,7 @@ def train(args, epoch, net, trainLoader, optimizer, trainF):
         optimizer.zero_grad()
         output = net(data)
         loss = F.nll_loss(output, target)
+        # make_graph.save('/tmp/t.dot', loss.creator); assert(False)
         loss.backward()
         optimizer.step()
         nProcessed += len(data)
