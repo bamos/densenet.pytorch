@@ -27,6 +27,11 @@ of the code, I have inappropriately put a binary model
 file on git so that all of my scripts can be run
 without any setup requirements.
 
+You can [contact me directly](http://bamos.github.io/)
+or join in on the discussion in
+[this PyTorch forum thread](https://discuss.pytorch.org/t/help-debugging-densenet-model-on-cifar-10/412)
+if you have any ideas.
+
 ## Hidden states and gradients exactly match the official implementation
 
 My implementation seems to exactly the
