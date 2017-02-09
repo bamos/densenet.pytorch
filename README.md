@@ -80,6 +80,9 @@ don't work either.
 
 ## Other things I've checked
 + I've tried convolutions with and without bias terms.
++ I've numerically checked the gradients of a layer with
+a concatenation between the input and output of
+the layer since it's traditionally a non-standard operation.
 
 # Running the code and viewing convergence
 
