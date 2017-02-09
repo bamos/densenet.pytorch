@@ -122,5 +122,5 @@ def adjust_opt(optimizer, epoch):
     elif epoch == 225: lr = 1e-3
     else: return
 
-    for param_group in optimizer.state_dict()['param_groups']:
+    for param_group in optimizer.param_groups:
         param_group['lr'] = lr
