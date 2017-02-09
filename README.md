@@ -75,6 +75,9 @@ as other optimization techniques like ADAM and RMSprop
 don't work either.
 + I have tried enabling and disabling data augmentation.
 
+## Other things I've checked
++ I've tried convolutions with and without bias terms.
+
 # Running the code and viewing convergence
 
 [./train.py](train.py) will create a model, start training it,
