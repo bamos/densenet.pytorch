@@ -44,6 +44,9 @@ You can look at and run my tests with
 You should see the following output, which shows
 the magnitudes of the gradients w.r.t. the
 convolutions in each layer from the beginning to the end.
+I think the infs in the LuaTorch weight gradients
+are insignificant and some other bug in PyTorch's
+legacy code.
 
 ```
 PyTorch weight gradients:
