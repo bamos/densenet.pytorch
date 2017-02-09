@@ -88,6 +88,8 @@ don't work either.
 + I've numerically checked the gradients of a layer with
 a concatenation between the input and output of
 the layer since it's traditionally a non-standard operation.
+I have uploaded the source for this check in
+[numcheck-grads.py](numcheck-grads.py).
 + My random weight initialization is the same as the
   official implementation.
 + The [model graph](./images/graph.png) looks reasonable.
