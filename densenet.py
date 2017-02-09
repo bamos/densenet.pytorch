@@ -114,13 +114,3 @@ class DenseNet(nn.Module):
         out = torch.squeeze(F.avg_pool2d(F.relu(self.bn1(out)), 8))
         out = F.log_softmax(self.fc(out))
         return out
-
-init_lr = 1e-1
-def adjust_opt(optimizer, epoch):
-    if epoch < 10: lr = 1e-1
-    elif epoch == 10: lr = 1e-2
-    elif epoch == 225: lr = 1e-3
-    else: return
-
-    for param_group in optimizer.param_groups:
-        param_group['lr'] = lr

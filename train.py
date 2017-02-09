@@ -74,17 +74,14 @@ def main():
 
     net = densenet.DenseNet(growthRate=12, depth=100, reduction=0.5,
                             bottleneck=True, nClasses=10)
-    adjust_opt = densenet.adjust_opt
-    init_lr = densenet.init_lr
-
 
     print('  + Number of params: {}'.format(
         sum([p.data.nelement() for p in net.parameters()])))
     if args.cuda:
         net = net.cuda()
 
-    optimizer = optim.SGD(net.parameters(), lr=init_lr, momentum=0.9,
-                          weight_decay=1e-4)
+    optimizer = optim.SGD(net.parameters(), lr=1e-1,
+                          momentum=0.9, weight_decay=1e-4)
 
     trainF = open(os.path.join(args.save, 'train.csv'), 'w')
     testF = open(os.path.join(args.save, 'test.csv'), 'w')
@@ -147,6 +144,15 @@ def test(args, epoch, net, testLoader, optimizer, testF):
 
     testF.write('{},{},{}\n'.format(epoch, test_loss, err))
     testF.flush()
+
+def adjust_opt(optimizer, epoch):
+    if epoch < 150: lr = 1e-1
+    elif epoch == 150: lr = 1e-2
+    elif epoch == 225: lr = 1e-3
+    else: return
+
+    for param_group in optimizer.param_groups:
+        param_group['lr'] = lr
 
 if __name__=='__main__':
     main()
