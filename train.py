@@ -33,6 +33,8 @@ def main():
     parser.add_argument('--no-cuda', action='store_true')
     parser.add_argument('--save')
     parser.add_argument('--seed', type=int, default=1)
+    parser.add_argument('--opt', type=str, default='sgd',
+                        choices=('sgd', 'adam', 'rmsprop'))
     args = parser.parse_args()
 
     args.cuda = not args.no_cuda and torch.cuda.is_available()
@@ -80,14 +82,19 @@ def main():
     if args.cuda:
         net = net.cuda()
 
-    optimizer = optim.SGD(net.parameters(), lr=1e-1,
-                          momentum=0.9, weight_decay=1e-4)
+    if args.opt == 'sgd':
+        optimizer = optim.SGD(net.parameters(), lr=1e-1,
+                            momentum=0.9, weight_decay=1e-4)
+    elif args.opt == 'adam':
+        optimizer = optim.Adam(net.parameters(), weight_decay=1e-4)
+    elif args.opt == 'rmsprop':
+        optimizer = optim.RMSprop(net.parameters(), weight_decay=1e-4)
 
     trainF = open(os.path.join(args.save, 'train.csv'), 'w')
     testF = open(os.path.join(args.save, 'test.csv'), 'w')
 
     for epoch in range(1, args.nEpochs + 1):
-        adjust_opt(optimizer, epoch)
+        adjust_opt(args.opt, optimizer, epoch)
         train(args, epoch, net, trainLoader, optimizer, trainF)
         test(args, epoch, net, testLoader, optimizer, testF)
         torch.save(net, os.path.join(args.save, 'latest.pth'))
@@ -145,14 +152,15 @@ def test(args, epoch, net, testLoader, optimizer, testF):
     testF.write('{},{},{}\n'.format(epoch, test_loss, err))
     testF.flush()
 
-def adjust_opt(optimizer, epoch):
-    if epoch < 150: lr = 1e-1
-    elif epoch == 150: lr = 1e-2
-    elif epoch == 225: lr = 1e-3
-    else: return
+def adjust_opt(optAlg, optimizer, epoch):
+    if optAlg == 'sgd':
+        if epoch < 150: lr = 1e-1
+        elif epoch == 150: lr = 1e-2
+        elif epoch == 225: lr = 1e-3
+        else: return
 
-    for param_group in optimizer.param_groups:
-        param_group['lr'] = lr
+        for param_group in optimizer.param_groups:
+            param_group['lr'] = lr
 
 if __name__=='__main__':
     main()
