@@ -45,7 +45,7 @@ I expected to find an error here, but
 was surprised to see that everything matched!
 
 You can look at and run my tests with
-[numerically-check-gradients.py](numerically-check-gradients.py).
+[compare-pytorch-and-torch-grads.py](compare-pytorch-and-torch-grads.py)
 You should see the following output, which shows
 the magnitudes of the gradients w.r.t. the
 convolutions in each layer from the beginning to the end.
