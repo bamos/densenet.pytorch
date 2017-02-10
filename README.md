@@ -5,7 +5,7 @@ DenseNet-BC architecture as described in the
 paper [Densely Connected Convolutional Networks](https://arxiv.org/abs/1608.06993)
 by G. Huang, Z. Liu, K. Weinberger, and L. van der Maaten.
 This implementation gets a CIFAR-10+ error rate of
-~4.81 with a 100-layer DenseNet-BC with a growth rate of 12.
+4.77 with a 100-layer DenseNet-BC with a growth rate of 12.
 Their official implementation and links to many other
 third-party implementations are available in the
 [liuzhuang13/DenseNet](https://github.com/liuzhuang13/DenseNet)
@@ -91,7 +91,7 @@ an growth rate of 12 on the CIFAR-10 dataset with
 data augmentations.
 Due to GPU memory sizes, this is the largest model I am able to run.
 The paper reports a final test error of 4.51 with this
-architecture and we obtain a final test error of ~4.81.
+architecture and we obtain a final test error of 4.77.
 
 ![](images/sgd-loss-error.png)
 
