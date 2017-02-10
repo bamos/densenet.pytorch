@@ -98,7 +98,7 @@ def main():
         train(args, epoch, net, trainLoader, optimizer, trainF)
         test(args, epoch, net, testLoader, optimizer, testF)
         torch.save(net, os.path.join(args.save, 'latest.pth'))
-        os.system('./plot.py {}'.format(args.save))
+        os.system('./plot.py {} &'.format(args.save))
 
     trainF.close()
     testF.close()
