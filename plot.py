@@ -29,8 +29,8 @@ def main():
     testI, testLoss, testErr = np.split(testData, [1,2], axis=1)
 
     fig, ax = plt.subplots(1, 1, figsize=(6, 5))
-    plt.plot(trainI, trainLoss, label='Train')
-    plt.plot(trainI_, trainLoss_, label='Train (Rolling)')
+    # plt.plot(trainI, trainLoss, label='Train')
+    plt.plot(trainI_, trainLoss_, label='Train')
     plt.plot(testI, testLoss, label='Test')
     plt.xlabel('Epoch')
     plt.ylabel('Cross-Entropy Loss')
@@ -41,8 +41,8 @@ def main():
     print('Created {}'.format(loss_fname))
 
     fig, ax = plt.subplots(1, 1, figsize=(6, 5))
-    plt.plot(trainI, trainErr, label='Train')
-    plt.plot(trainI_, trainErr_, label='Train (Rolling)')
+    # plt.plot(trainI, trainErr, label='Train')
+    plt.plot(trainI_, trainErr_, label='Train')
     plt.plot(testI, testErr, label='Test')
     plt.xlabel('Epoch')
     plt.ylabel('Error')
