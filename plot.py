@@ -22,6 +22,8 @@ def main():
     N = 392*2 # Rolling loss over the past epoch.
 
     trainI, trainLoss, trainErr = np.split(trainData, [1,2], axis=1)
+    trainI, trainLoss, trainErr = [x.ravel() for x in
+                                   (trainI, trainLoss, trainErr)]
     trainI_, trainLoss_, trainErr_ = rolling(N, trainI, trainLoss, trainErr)
 
     testI, testLoss, testErr = np.split(testData, [1,2], axis=1)
@@ -55,9 +57,10 @@ def main():
     print('Created {}'.format(loss_err_fname))
 
 def rolling(N, i, loss, err):
-    i_ = i[N:]
-    loss_ = [sum(loss[i-N:i])/N for i in range(N, len(loss))]
-    err_ = [sum(err[i-N:i])/N for i in range(N, len(err))]
+    i_ = i[N-1:]
+    K = np.full(N, 1./N)
+    loss_ = np.convolve(loss, K, 'valid')
+    err_ = np.convolve(err, K, 'valid')
     return i_, loss_, err_
 
 if __name__ == '__main__':
