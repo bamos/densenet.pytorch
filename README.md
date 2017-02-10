@@ -59,7 +59,8 @@ My convergence issues were due to a critical PyTorch bug
 related to using `torch.cat` with convolutions with cuDNN
 enabled (which it is by default when CUDA is used).
 This bug caused incorrect gradients and the fix to
-this bug is to disable cuDNN.
+this bug is to disable cuDNN (which doesn't have
+to be done anymore because it's fixed).
 The oversight in my debugging strategies that caused me to
 not find this error is that I did not think to disable cuDNN.
 Until now, I have assumed that the cuDNN option in frameworks
@@ -77,7 +78,7 @@ contains this patch and was downloaded after 2017-02-10.**
 
 # What does the PyTorch compute graph of the model look like?
 
-You can see the compute graph [here](images/graph.png),
+You can see the compute graph [here](images/model.png),
 which I created with [make_graph.py](https://github.com/bamos/densenet.pytorch/blob/master/make_graph.py),
 which I copied from
 [Adam Paszke's gist](https://gist.github.com/apaszke/01aae7a0494c55af6242f06fad1f8b70).
@@ -164,13 +165,13 @@ The BibTeX entry requires the `url` LaTeX package.
 @misc{amos2017densenet,
   title = {{A PyTorch Implementation of DenseNet}},
   author = {Amos, Brandon and Kolter, J. Zico},
-  howpublished = {\url{http://github.com/bamos/densenet.pytorch}},
+  howpublished = {\url{https://github.com/bamos/densenet.pytorch}},
   note = {Accessed: [Insert date here]}
 }
 
 Brandon Amos, J. Zico Kolter
 A PyTorch Implementation of DenseNet
-http://github.com/bamos/densenet.pytorch.
+https://github.com/bamos/densenet.pytorch.
 Accessed: [Insert date here]
 ```
 

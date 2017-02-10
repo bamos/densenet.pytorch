@@ -111,7 +111,7 @@ I have uploaded the source for this check in
 [numcheck-grads.py](numcheck-grads.py).
 + My random weight initialization is the same as the
   official implementation.
-+ The [model graph](../images/graph.png) looks reasonable.
++ The [model graph](../images/model.png) looks reasonable.
 
 # Running the code and viewing convergence
 
