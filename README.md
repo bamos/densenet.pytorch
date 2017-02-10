@@ -74,7 +74,8 @@ Adam fixed the PyTorch bug that caused this in
 and has been merged into Torch's master branch.
 **If you are interested in using the DenseNet code in
 this repository, make sure your PyTorch version
-contains this patch and was downloaded after 2017-02-10.**
+contains [this PR](https://github.com/pytorch/pytorch/pull/708)
+and was downloaded after 2017-02-10.**
 
 # What does the PyTorch compute graph of the model look like?
 
