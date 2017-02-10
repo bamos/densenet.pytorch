@@ -1,3 +1,36 @@
+The following is the old message I included in this repository
+when I was having trouble with convergence.
+I also posted in
+[this PyTorch forum thread](https://discuss.pytorch.org/t/help-debugging-densenet-model-on-cifar-10/412).
+You may also be interested in
+[my script that
+compares PyTorch gradients to Torch gradients](https://github.com/bamos/densenet.pytorch/blob/master/attic/compare-pytorch-and-torch-grads.py)
+and
+[my script that numerically checks PyTorch gradients](https://github.com/bamos/densenet.pytorch/blob/master/attic/numcheck-grads.py).
+
+[Adam Paszke](https://github.com/apaszke) helped me find out
+that my convergence issues were due to a critical PyTorch bug
+related to using `torch.cat` with convolutions with cuDNN
+enabled (which it is by default when CUDA is used).
+This bug caused incorrect gradients and the fix to
+this bug is to disable cuDNN.
+The oversight in my debugging strategies that caused me to
+not find this error is that I did not think to disable cuDNN.
+Until now, I have assumed that the cuDNN option in frameworks
+are bug-free, but have learned that this is not always the case.
+I may have also found something if I would have numerically
+debugged `torch.cat` layers with convolutions instead of
+fully connected layers.
+
+Adam fixed the PyTorch bug that caused this in
+[this PR](https://github.com/pytorch/pytorch/pull/708)
+and has been merged into Torch's master branch.
+**If you are interested in using the DenseNet code in
+this repository, make sure your PyTorch version
+contains this patch and was downloaded after 2017-02-10.**
+
+---
+
 # Help wanted: CIFAR-10 experiments not converging
 
 I am not sure why my implementation is not converging
@@ -51,7 +84,7 @@ LuaTorch weight gradients:
 
 Since my model's hidden states and gradients look good, it seems like
 there might be an issue with the training code in
-[train.py](train.py), which I started with
+[train.py](../train.py), which I started with
 [the official PyTorch MNIST example](https://github.com/pytorch/examples/blob/master/mnist/main.py).
 My training code here will successfully train a VGG model
 on CIFAR-10 (not included in this repo)
@@ -78,14 +111,14 @@ I have uploaded the source for this check in
 [numcheck-grads.py](numcheck-grads.py).
 + My random weight initialization is the same as the
   official implementation.
-+ The [model graph](./images/graph.png) looks reasonable.
++ The [model graph](../images/graph.png) looks reasonable.
 
 # Running the code and viewing convergence
 
-[./train.py](train.py) will create a model, start training it,
+[./train.py](../train.py) will create a model, start training it,
 and save progress to `args.save`, which is
 `work/cifar10.base` by default.
-The training script will call [plot.py](plot.py) after
+The training script will call [plot.py](../plot.py) after
 every epoch to create plots from the saved data.
 
 Here's a typical convergence plot that the current
@@ -94,7 +127,7 @@ In many cases like this, the network quickly gets stuck
 in a bad place.
 Other times, the convergence is obviously too slow.
 
-![](images/bad-convergence.png)
+![](../images/bad-convergence.png)
 
 # What the convergence should look like
 
