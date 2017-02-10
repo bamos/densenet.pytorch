@@ -29,7 +29,7 @@ import make_graph
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--batchSz', type=int, default=64)
-    parser.add_argument('--nEpochs', type=int, default=1000)
+    parser.add_argument('--nEpochs', type=int, default=300)
     parser.add_argument('--no-cuda', action='store_true')
     parser.add_argument('--save')
     parser.add_argument('--seed', type=int, default=1)
