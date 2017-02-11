@@ -70,13 +70,13 @@ class DenseNet(nn.Module):
                                bias=False)
         self.dense1 = self._make_dense(nChannels, growthRate, nDenseBlocks, bottleneck)
         nChannels += nDenseBlocks*growthRate
-        nOutChannels = math.floor(nChannels*reduction)
+        nOutChannels = int(math.floor(nChannels*reduction))
         self.trans1 = Transition(nChannels, nOutChannels)
 
         nChannels = nOutChannels
         self.dense2 = self._make_dense(nChannels, growthRate, nDenseBlocks, bottleneck)
         nChannels += nDenseBlocks*growthRate
-        nOutChannels = math.floor(nChannels*reduction)
+        nOutChannels = int(math.floor(nChannels*reduction))
         self.trans2 = Transition(nChannels, nOutChannels)
 
         nChannels = nOutChannels
